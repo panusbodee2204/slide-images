@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 VDO Content Unit Plan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #E63946; /* Energetic Red */
+            --secondary: #1D3557; /* Professional Navy */
+            --accent: #457B9D; /* Soft Blue */
+            --bg: #F1FAEE; /* Off-white Clean */
+            --text: #333;
+            --success: #2A9D8F;
+            --gold: #F4A261;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+
+        /* Slide Container */
+        .slide {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--secondary);
+            padding-left: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Elements */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .role-box {
+            background: #fff;
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .sponsor-list li {
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        .concept-pill {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        /* Video Container */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+            margin-bottom: 15px;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Resume Image Container */
+        .resume-container {
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .resume-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Visuals for Chart */
+        .chart-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .box-level-1 {
+            background: var(--secondary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            min-width: 250px;
+        }
+
+        .box-level-2 {
+            display: flex;
+            gap: 20px;
+        }
+
+        .box-sub {
+            background: var(--accent);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .box-talent {
+            background: var(--gold); 
+            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            width: 200px;
+            border: 2px solid var(--secondary);
+            font-weight: bold;
+        }
+        
+        .box-support {
+            background: #e0e0e0;
+            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            width: 100%;
+            border: 2px dashed var(--secondary);
+        }
+        
+        /* Profile Section */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .profile-badge {
+            background: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin-left: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 0.8rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide">
+        <div class="container" style="text-align: center;">
+            <p style="text-transform: uppercase; letter-spacing: 2px; color: var(--accent);">Strategic Proposal</p>
+            <h1>2026 VDO Content Unit</h1>
+            <p style="font-size: 1.5rem;">Expanding Horizons: From "Readers" to "Viewers"</p>
+            <div style="margin-top: 50px;">
+                <p><strong>Presented by:</strong> Pan Panusbodee</p>
+                <p>Project Manager / Host / Producer</p>
+            </div>
+        </div>
+        <footer>Scroll to continue ▼</footer>
+    </div>
+
+    <div class="slide">
+        <div class="container">
+            <h2>Why a Dedicated Unit?</h2>
+            <div class="grid-2">
+                <div>
+                    <p>Creating high-quality Video Content requires a fundamentally different workflow from Editorial writing.</p>
+                    <p>To scale our IP and generate new revenue streams, we need a specialized unit that separates <strong>Production Logic</strong> (Script, Shoot, Post) from <strong>Editorial Logic</strong> (Daily News).</p>
+                    <br>
+                    <h3>The Goal:</h3>
+                    <p>To build new IPs beyond "News" that are quality-driven and sponsor-friendly.</p>
+                </div>
+                <div class="card" style="background: var(--secondary); color: white;">
+                    <h3 style="color: white;">Key Differences</h3>
+                    <ul style="margin-top: 20px;">
+                        <li><strong>Editorial:</strong> Speed, Accuracy, Text-heavy.</li>
+                        <li><strong>VDO Unit:</strong> Pre-production, Storytelling, Visual Engagement.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer>2026 VDO Content Unit Plan</footer>
+    </div>
+
+    <div class="slide">
+        <div class="container">
+            <h2>Lean Team Structure</h2>
+            <p>Maximizing efficiency with a hybrid team + existing resources.</p>
+            
+            <div class="chart-visual" style="margin-top: 30px;">
+                <div class="box-level-1">
+                    Pan Panusbodee<br>
+                    <span style="font-size:0.8rem; opacity:0.8;">Project Manager / Host / Producer</span>
+                </div>
+                
+                <div style="width: 2px; height: 30px; background: #ccc;"></div>
+                
+                <div class="box-level-2">
+                    <div class="box-sub">
+                        <strong>Creative Content Lead</strong><br>
+                        (1 Position)<br>
+                        <span style="font-size:0.8rem; opacity:0.9;">Script / Creative / Storyboard</span>
+                    </div>
+                    <div class="box-sub">
+                        <strong>Unit Coordinator</strong><br>
+                        (1 Position)<br>
+                        <span style="font-size:0.8rem; opacity:0.9;">Admin / Booking / Logistics</span>
+                    </div>
+                    <div class="box-talent">
+                        <strong>KEY TALENT NEEDED</strong><br>
+                        Host: "Khan (Tea) Rot"<br>
+                        <span style="font-size:0.8rem;">(Travel & Auto Expert)</span>
+                    </div>
+                </div>
+
+                <div style="width: 2px; height: 30px; background: #ccc;"></div>
+
+                <div class="box-support">
+                    <strong>Sanook Multimedia Team (Existing Resource)</strong><br>
+                    Videographers / Video Editors / Motion Graphics
+                </div>
+            </div>
+        </div>
+        <footer>2026 VDO Content Unit Plan</footer>
+    </div>
+
+    <div class="slide">
+        <div class="container">
+            <h2>2026 Content Pillars</h2>
+            <p style="margin-bottom: 40px;">Focusing on 3 key areas to capture diverse audiences and sponsors.</p>
+            
+            <div class="grid-2" style="grid-template-columns: 1fr 1fr 1fr;">
+                <div class="card">
+                    <div class="concept-pill" style="background: var(--primary);">Sports Variety</div>
+                    <h3>Side-Field Stories</h3>
+                    <p style="font-size: 0.9rem;">Non-analytical, fun, and lifestyle-focused content.</p>
+                </div>
+                <div class="card">
+                    <div class="concept-pill" style="background: var(--success);">Auto & Travel</div>
+                    <h3>Khan (Tea) Rot</h3>
+                    <p style="font-size: 0.9rem;">(Country Roads) - VLOG style driving & talking.</p>
+                </div>
+                <div class="card">
+                    <div class="concept-pill" style="background: var(--gold); color: #333;">Talk / Podcast</div>
+                    <h3>Khon-Gen-Rai?</h3>
+                    <p style="font-size: 0.9rem;">(What Gen Are You?) - Inter-generational dialogue.</p>
+                </div>
+            </div>
+        </div>
+        <footer>2026 VDO Content Unit Plan</footer>
+    </div>
+
+    <div class="slide">
+        <div class="container">
+            <h2>1. Sports Variety</h2>
+            <p class="highlight">Turning Text-Based Experts into VDO Personalities</p>
+            
+            <div class="grid-2">
+                <div class="role-box">
+                    <h3>The "Gang" Concept</h3>
+                    <p>Leveraging our internal sports gurus: <strong>Petch, Wee, Nine, O, Pik</strong>.</p>
+                    <p><strong>Core Value:</strong> They possess deep "Off-field" knowledge. We will transform this static knowledge into lively, comedic, and relatable VDO content.</p>
+                </div>
+                <div class="role-box" style="border-left-color: var(--primary);">
+                    <h3>Programs</h3>
+                    <p><strong>1. Road to World Cup 2026:</strong><br> 8-Ep Series on underdog nations.</p>
+                    <p><strong>2. The Locker Room Quiz:</strong><br> Chaotic, funny trivia games among the gang.</p>
+                </div>
+            </div>
+        </div>
+        <footer>2026 VDO Content Unit Plan</footer>
+    </div>
+
+    <div class="slide" style="background-color: #f0f0f0;">
+        <div class="container">
+            <h2>Reference: Sports Mood & Tone</h2>
+            <p>Examples of visual style and energy we aim for.</p>
+
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: var(--primary);">Mood: Fun & Variety (The Gang)</h3>
+                    <div class="card" style="padding: 15px;">
+                        <p style="font-size: 0.9rem; font-weight: bold;">Ref 1: NRsportsRadio (Chaos/Fun)</p>
+                        <div class="video-wrapper">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/SRjmvatx81g" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        
+                        <p style="font-size: 0.9rem; font-weight: bold; margin-top:10px;">Ref 2: True Sport Network (Long Form Football Quiz)</p>
+                        <div class="video-wrapper">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/9Jb2Bv-S6vc" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--secondary);">Mood: Documentary (Road to World Cup)</h3>
+                    <div class="card" style="padding: 15px;">
+                        <p style="font-size: 0.9rem; font-weight: bold;">Ref 3: Main Stand (Storytelling)</p>
+                        <div class="video-wrapper">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/h90tlgcBSv4" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 10px;">
+                            *This style focuses on cinematic storytelling and deep dives into culture and history.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>2026 VDO Content Unit Plan</footer>
+    </div>
+
+    <div class="slide">
+        <div class="container">
+            <h2>2. Auto & Travel</h2>
+            <h3>Program: "Khan (Tea) Rot" (Country Roads)</h3>
+            <br>
+            <div class="card">
+                <div class="grid-2">
+                    <div>
+                        <p><strong>Format:</strong> Semi-Vlog / Reality</p>
+                        <p><strong>Concept:</strong> A group of friends driving, traveling, and having conversations on the road.</p>
+                        <p><strong>Required Host:</strong> Needs to be a knowledgeable driver, travel expert, and fluent in English.</p>
+                        <p><strong>Tone:</strong> "Take me home, country roads" — Relaxed, Fun, Authentic.</p>
+                    </div>
+                    <div>
+                        <p style="color: var(--primary);"><strong>Target Partners:</strong></p>
+                        <ul class="sponsor-list">
+                            <li><strong>Tourism (TAT):</strong> Promoting unseen destinations.</li>
+                            <li><strong>Automotive:</strong> Soft launch/reviews.</li>
+                            <li><strong>PTT/OR:</strong> Cafe Amazon stops.</li>
+                            <li><strong>CP All:</strong> 7-Eleven tie-ins on the go.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>2026 VDO Content Unit Plan</footer>
+    </div>
+
+    <div class="slide" style="background-color: #f0f0f0;">
+        <div class="container">
+            <h2>Reference: Auto & Travel Mood</h2>
+            <p>Visualizing "Khan (Tea) Rot": A mix of Friendship & Performance.</p>
+
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: var(--success);">Mood: Friendship & Lifestyle</h3>
+                    <div class="card" style="padding: 15px;">
+                        <p style="font-size: 0.9rem; font-weight: bold;">Ref 1: EV Girls</p>
+                        <div class="video-wrapper">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/PXLQXHidAgo" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 10px;">
+                            *Focus on the "Gang" vibe, traveling together, chatting, and having fun along the way.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--secondary);">Mood: Performance & Road Trip</h3>
+                    <div class="card" style="padding: 15px;">
+                        <p style="font-size: 0.9rem; font-weight: bold;">Ref 2: Autolife Thailand</p>
+                        <div class="video-wrapper">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/z5gswovs0QM" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 10px;">
+                            *Integrating driving performance reviews naturally into a long-distance road trip context.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>2026 VDO Content Unit Plan</footer>
+    </div>
+
+    <div class="slide">
+        <div class="container">
+            <h2>3. Talk / Podcast</h2>
+            <h3>Program: "Khon-Gen-Rai?" (What Gen Are You?)</h3>
+            <p><strong>Host:</strong> Pan Panusbodee</p>
+            <br>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Concept</h3>
+                    <p>Inviting guests from different generations (X, Y, Z) to discuss current social topics.</p>
+                    <p><strong>Goal:</strong> To decode thoughts and present diverse perspectives on the same issue.</p>
+                </div>
+                <div class="card">
+                    <h3>Production Plan</h3>
+                    <ul>
+                        <li><strong>Frequency:</strong> Bi-weekly (Start) -> Weekly.</li>
+                        <li><strong>Platform:</strong> Long-form (YouTube) + Short-form clips.</li>
+                        <li><strong>Sales Angle:</strong> Upselling existing clients of "#NintaKhao" who want longer exposure with the same trusted Host.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer>2026 VDO Content Unit Plan</footer>
+    </div>
+
+    <div class="slide" style="background-color: #fff;">
+        <div class="container">
+            <h2 style="color: var(--success); border-color: var(--success);">Revenue & Sponsorship</h2>
+            <p>Pilot Episodes will be produced to pitch directly to these high-potential sectors.</p>
+            
+            <div class="grid-3">
+                <div class="card" style="border-top: 5px solid var(--primary);">
+                    <h3 style="font-size: 1.2rem;">Sports Variety</h3>
+                    <ul class="sponsor-list">
+                        <li><strong>Alcohol Brands:</strong> Tie-in via by-products (Drinking water/Soda/Glassware).</li>
+                        <li><strong>Suzuki:</strong> Known for supporting sports YouTubers.</li>
+                        <li><strong>Ophtus:</strong> Eyewear brand with heavy YouTube ad spend.</li>
+                        <li><strong>Grooming (e.g., Kai):</strong> Targeting male demographics.</li>
+                    </ul>
+                </div>
+                
+                <div class="card" style="border-top: 5px solid var(--success);">
+                    <h3 style="font-size: 1.2rem;">Auto & Travel</h3>
+                    <ul class="sponsor-list">
+                        <li><strong>Tourism Authority (TAT):</strong> Budget for domestic travel promotion.</li>
+                        <li><strong>Automotive Brands:</strong> Test drive & reviews.</li>
+                        <li><strong>Energy & Retail:</strong> PTT (Amazon), CP (7-11) as travel stops.</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="border-top: 5px solid var(--gold);">
+                    <h3 style="font-size: 1.2rem;">Talk Podcast</h3>
+                    <ul class="sponsor-list">
+                        <li><strong>Existing Clients:</strong> Leveraging the "#NintaKhao" client base.</li>
+                        <li><strong>Corporate/Insurance:</strong> Brands looking for "Thought Leadership" association.</li>
+                        <li><strong>YouTube Monetization:</strong> Long-form watch time revenue.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer>2026 VDO Content Unit Plan</footer>
+    </div>
+
+    <div class="slide" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="profile-header">
+                <h2>Proposed Talent: "Khan (Tea) Rot"</h2>
+                <span class="profile-badge">Ready to Recruit</span>
+            </div>
+            
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: var(--primary); font-size: 2rem;">Peeranut (Peem)</h3>
+                    <p class="highlight" style="font-size: 1.2rem;">The Perfect Fit: Travel Expert + Auto Skill + Humor</p>
+                    <p>A former Sanook Travel creator who expanded his horizons to Travel Tech and Marketing. He brings the perfect blend of skills for our new unit.</p>
+                    <br>
+                    <h4 style="margin-bottom: 10px;">Why him?</h4>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Sanook Alumni (6 Years):</strong> Zero learning curve on culture.</li>
+                        <li><strong>Multi-Industry Experience:</strong> Traveloka & KTC (Finance/Travel).</li>
+                        <li><strong>Video Native:</strong> Proven track record in TikTok/Reels creation.</li>
+                        <li><strong>Versatile Host:</strong> Drives well, fluent in English, and has great humor.</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top: 5px solid var(--success);">
+                    <h3>Value Add-on</h3>
+                    <p style="margin-top: 15px;"><strong>Football Knowledge:</strong><br>
+                    Can cross-over to support the <em>Sports Variety</em> team (Petch, Wee, Nine, O, Pik) in Quiz content immediately.</p>
+                    <br>
+                    <p><strong>Skills:</strong><br>
+                    Writing, Photography, Video Editing, Driving, English.</p>
+                </div>
+            </div>
+        </div>
+        <footer>2026 VDO Content Unit Plan</footer>
+    </div>
+
+    <div class="slide" style="background-color: #333; color: white;">
+        <div class="container">
+            <h2 style="color: white; border-color: white;">Reference: Candidate Resume</h2>
+            <p>Peeranut Pornnisen (Peem)</p>
+            
+            <div class="resume-container">
+                <img src="https://github.com/panusbodee2204/slide-images/blob/main/Peeranut.p%20Resume%202_page-0001.jpg?raw=true" alt="Peeranut Resume">
+            </div>
+        </div>
+        <footer>Reference Document</footer>
+    </div>
+
+    <div class="slide">
+        <div class="container" style="text-align: center;">
+            <h1 style="color: var(--primary);">Let's Make It Happen.</h1>
+            <p style="font-size: 1.5rem; margin-top: 20px;">2026 VDO Content Unit</p>
+            <div style="margin-top: 40px; padding: 20px; border: 1px solid #ddd; display: inline-block; border-radius: 8px;">
+                <p><strong>Next Step:</strong> Budget Approval & Team Setup</p>
+            </div>
+        </div>
+        <footer>End of Presentation</footer>
+    </div>
+
+</body>
+</html>
