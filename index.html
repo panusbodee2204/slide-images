@@ -33,7 +33,7 @@
 
         /* Slide Container */
         .slide {
-            height: 100vh;
+            min-height: 100vh; /* Changed from height to min-height for mobile scrolling */
             width: 100%;
             scroll-snap-align: start;
             display: flex;
@@ -264,11 +264,42 @@
             font-size: 0.8rem;
             color: #999;
         }
+
+        /* --- MOBILE RESPONSIVE TWEAKS --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .slide { 
+                padding: 60px 20px 40px 20px; 
+                height: auto; 
+                display: block; /* Allows natural flow */
+            }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr; /* Stack vertically */
+                gap: 20px;
+            }
+            .box-level-2 {
+                flex-direction: column;
+            }
+            .box-sub, .box-talent {
+                width: 100%;
+            }
+            .resume-container {
+                height: 50vh;
+            }
+            footer {
+                position: relative;
+                margin-top: 30px;
+                text-align: center;
+                right: auto;
+                bottom: auto;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="slide">
+    <div class="slide" style="display: flex; justify-content: center; height: 100vh;">
         <div class="container" style="text-align: center;">
             <p style="text-transform: uppercase; letter-spacing: 2px; color: var(--accent);">Strategic Proposal</p>
             <h1>2026 VDO Content Unit</h1>
@@ -351,8 +382,7 @@
             <h2>2026 Content Pillars</h2>
             <p style="margin-bottom: 40px;">Focusing on 3 key areas to capture diverse audiences and sponsors.</p>
             
-            <div class="grid-2" style="grid-template-columns: 1fr 1fr 1fr;">
-                <div class="card">
+            <div class="grid-3"> <div class="card">
                     <div class="concept-pill" style="background: var(--primary);">Sports Variety</div>
                     <h3>Side-Field Stories</h3>
                     <p style="font-size: 0.9rem;">Non-analytical, fun, and lifestyle-focused content.</p>
@@ -640,7 +670,7 @@
         <footer>Reference Document</footer>
     </div>
 
-    <div class="slide">
+    <div class="slide" style="display: flex; justify-content: center; height: 100vh;">
         <div class="container" style="text-align: center;">
             <h1 style="color: var(--primary);">Let's Make It Happen.</h1>
             <p style="font-size: 1.5rem; margin-top: 20px;">2026 VDO Content Unit</p>
